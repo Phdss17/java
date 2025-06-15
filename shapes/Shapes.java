@@ -1,6 +1,7 @@
 import java.text.DecimalFormat;
 
-class Shapes {
+abstract class Shapes {
+    private static final DecimalFormat d = new DecimalFormat("0.00");
     public String name;
 
     public Shapes( String name ) {
@@ -11,24 +12,17 @@ class Shapes {
         return this.name;
     }
 
-    public boolean inside( Point2D p ) {
-        return false;
-    }
-    public double getArea() {
-        return 0.0;
-    }
-    public double getPerimeter() {
-        return 0.0;
-    }
+    abstract public boolean inside( Point2D p );
 
-    public String getInfo() {
-        DecimalFormat d = new DecimalFormat("0.00"); //double x = 4.3; System.out.println( d.format(x) ); //4.30
+    abstract public double getArea();
+
+    abstract public double getPerimeter();
+
+    public final String getInfo() {
         return getName() + ": A=" + d.format(getArea()) + " P=" + d.format(getPerimeter());
-
+ 
     }
 
     @Override
-    public String toString() {
-        return "";
-    }
+    abstract public String toString();
 }
