@@ -1,13 +1,12 @@
-enum Coin {
-    C10( "C10",0.10,1),
-    C25( "C25",0.25,2),
-    C50( "C50",0.50,3),
-    C100("C100",1.00,4);
+enum Coin implements Valuable{
+    M10( "M10",0.10,1),
+    M25( "M25",0.25,2),
+    M50( "M50",0.50,3),
+    M100("M100",1.00,4);
 
     private String label;
     private double value;
     private int volume;
-
 
     private Coin(String label, double value, int volume) {
         this.label = label;
@@ -29,6 +28,6 @@ enum Coin {
 
     @Override
     public String toString() {
-         return String.format("%.2f", value) + ":" + volume;
+         return label + ":" + String.format("%.2f", value) + ":" + volume;
     }
 }

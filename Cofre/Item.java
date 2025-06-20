@@ -1,10 +1,12 @@
-public class Item {
+public class Item implements Valuable{
     private String label;
     private int volume;
+    private double value;
 
-    Item(String label, int volume){
+    Item(String label, double value, int volume){
         setLabel(label);
         setVolume(volume);
+        this.value = value;
     }
 
     public String getLabel(){
@@ -13,6 +15,10 @@ public class Item {
 
     public int getVolume(){
         return volume;
+    }
+
+    public double getValue(){
+        return value;
     }
 
     public void setLabel(String label){
@@ -25,6 +31,6 @@ public class Item {
 
     @Override
     public String toString(){
-        return label + ":" + volume;
+        return label + ":" + String.format("%.2f", value) + ":" + volume;
     }
 }
