@@ -22,12 +22,12 @@ abstract class Funcionario {
 
     //se atingiu o máximo, lance uma MsgException
     //se não atingiu o máximo, adicione mais uma diária
-    public void addDiaria() {
+    public void addDiaria() throws MsgException{
         if ( this.diarias >= this.maxDiarias ) {
             throw new MsgException("fail: limite de diarias atingido");
         }
         
-        this.diarias ++;
+        this.diarias++;
     }
 
     //retorna bonus + diarias * 100

@@ -46,11 +46,17 @@ class UFC {
     }
 
     public Aluno getAluno(String nome) {
+        return this.alunos.get(nome);
     }
 
     public void addAluno(Aluno aluno) {
+        if(this.alunos.containsKey(aluno.getNome())){
+            return;
+        }
+        this.alunos.put(aluno.getNome(), aluno);
     }
     
     public void rmAluno(String nome) {
+        this.alunos.remove(nome);
     }
 }
