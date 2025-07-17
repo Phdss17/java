@@ -22,7 +22,10 @@ class UFC {
     }
 
     public Funcionario getFuncionario(String nome) {
-        return this.funcionarios.get( nome );
+        if(this.funcionarios.containsKey(nome)){
+            return this.funcionarios.get(nome);
+        }
+        return null;
     }
 
     public void addFuncionario(Funcionario funcionario) {
@@ -46,7 +49,10 @@ class UFC {
     }
 
     public Aluno getAluno(String nome) {
-        return this.alunos.get(nome);
+        if(this.alunos.containsKey(nome)){
+            return this.alunos.get(nome);
+        }
+        return null;
     }
 
     public void addAluno(Aluno aluno) {

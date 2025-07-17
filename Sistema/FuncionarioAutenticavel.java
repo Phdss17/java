@@ -26,8 +26,10 @@ class FuncionarioAutenticavel extends Funcionario implements Autenticavel {
     }
 
     public void logar( String senha ) {
-        if(this.senha == senha){
-            logado = true;
+        if(this.senha.equals(senha)){
+            setLogado(true);;
+        }else{
+            throw new MsgException("fail: senha invalida");
         }
     }
 

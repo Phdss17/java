@@ -53,6 +53,6 @@ class Aluno implements Autenticavel {
 
     @Override
     public String toString() {
-        return nome + ":" + curso + ":" + bolsa;
+        return "alu:" + nome + ":" + curso + ":" + bolsa;
     }
 }

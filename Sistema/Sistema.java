@@ -18,23 +18,48 @@ public class Sistema {
 
     public void addUsuario(String nome, String senha) {
         if(this.usuarios.containsKey(nome)){
-            return;
+            throw new MsgException("fail: usuario " + nome + " já existe!");
         }
-        Autenticavel a = new FuncionarioAutenticavel(nome);
-        a.setSenha(senha);
-        this.usuarios.put(nome, a);
+        
+        Funcionario func = this.ufc.getFuncionario(nome);
+        if ( func instanceof Terceirizado ) {
+            throw new MsgException("fail: terc nao pode ser cadastrado no sistema");
+        }
+
+        Autenticavel usu = (Autenticavel) func;
+        if (usu == null) {
+            usu = this.ufc.getAluno(nome);
+            if (usu == null) {
+                throw new MsgException("fail: " + nome + " nao encontrado");
+            }
+        }
+
+        this.usuarios.put(nome, usu);
+        usu.setSenha(senha);
     }
 
     public void rmUsuario(String nome) {
-        this.usuarios.remove(nome);
+        if(this.usuarios.containsKey(nome)){
+            this.usuarios.remove(nome);
+        }else{
+            throw new MsgException("fail: usuario " + nome + " nao encontrado");
+        } 
     }
     
     public void logar(String nome, String senha) {
-        this.usuarios.get(nome).logar(senha);
+        if(this.usuarios.containsKey(nome)){
+            this.usuarios.get(nome).logar(senha);
+        }else{
+            throw new MsgException("fail: usuario " + nome + " nao encontrado");
+        }
     }
 
     public void deslogar(String nome) {
-        this.usuarios.get(nome).deslogar();
+        if(this.usuarios.containsKey(nome)){
+            this.usuarios.get(nome).deslogar();
+        }else{
+            throw new MsgException("fail: usuario " + nome + " nao encontrado");
+        }
     }
 
     public void deslogarTodos() {
@@ -42,7 +67,11 @@ public class Sistema {
     }
 
     public String showUser( String nome ) {
-        return this.usuarios.get(nome).toString();
+        if(this.usuarios.containsKey(nome)){
+            Autenticavel aux = this.usuarios.get(nome);
+            return aux + ":" + aux.getSenha() + ":" + aux.getLogado();
+        }
+        return "fail: usuario " + nome + " nao encontrado";
     }
 
     @Override
