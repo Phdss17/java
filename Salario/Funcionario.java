@@ -16,17 +16,20 @@ abstract class Funcionario {
     }
 
     public void setBonus(int bonus) {
-        this.bonus += bonus;
+        this.bonus = bonus;
     }
 
     //se atingiu o máximo, lance uma MsgException
     //se não atingiu o máximo, adicione mais uma diária
     public void addDiaria() {
+        if(diarias == maxDiarias){
+            throw new MsgException("fail: limite de diarias atingido");
+        }
         diarias++;
     }
 
     //retorna bonus + diarias * 100
     public int getSalario() {
-        return bonus + diarias*100;
+        return bonus + diarias * 100;
     }
 }

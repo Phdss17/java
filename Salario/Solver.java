@@ -2,6 +2,7 @@ import java.util.*;
 
 class MsgException extends RuntimeException {
     public MsgException(String message) {
+        super(message);
     }
 }
 
@@ -27,7 +28,6 @@ public class Solver {
                 else                                     { println("fail: comando invalido"); }
             } catch (MsgException me) {
                 println(me.getMessage());
-                // e.printStackTrace(System.out);
             }
         }
     }
